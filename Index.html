@@ -11,13 +11,15 @@
 </head>
 
 <body>
+
   <canvas id="canvas"
-          width="1500"
-          height="700">
+          width="578"
+          height="200">
   </canvas>
   <div>
     <button id="clearButton">Clear</button>
   </div>
+  <img id="canvasImg" alt="Right click to save me">
   <script>
     MESSAGE_CONNECTED = 1;
     MESSAGE_USER_JOINED = 2;
@@ -31,7 +33,7 @@
       var isDrawing = false;
       var strokeColor = '';
       var strokes = [];
-      var socket = new WebSocket("ws://localhost:3000/ws");
+      var socket = new WebSocket("ws://localhost:3000/yashi");
       var otherColors = {};
       var otherStrokes = {};
 
@@ -58,8 +60,8 @@
             otherStrokes[message.user.id] = [];
             break;
           case MESSAGE_USER_LEFT:
-            delete otherColors[message.userId];
-            delete otherStrokes[message.userId];
+            // delete otherColors[message.userId];
+            // delete otherStrokes[message.userId];
             update();
             break;
           case MESSAGE_STROKE:
@@ -123,6 +125,7 @@
           var userId = userIds[i];
           ctx.strokeStyle = otherColors[userId];
           drawStrokes(otherStrokes[userId]);
+
         }
       }
 
@@ -137,6 +140,7 @@
           }
           ctx.closePath();
           ctx.stroke();
+          // ctx.save();
         }
       }
 
@@ -146,5 +150,8 @@
         update();
       };
     };
+
+    var dataURL=canvas.toDataURL();
+    document.getElementById('canvasImg').src=dataURL;
   </script>
 </body>
