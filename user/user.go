@@ -1,6 +1,6 @@
 package user
 
-import "DrawIt/hub"
+import "github.com/vashish1/DrawIt/hub"
 
 type User struct {
 	Name string

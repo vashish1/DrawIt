@@ -1,8 +1,8 @@
 package main
 
 import (
-	"DrawIt/hub"
-	"DrawIt/user"
+	"github.com/vashish1/DrawIt/hub"
+	"github.com/vashish1/DrawIt/user"
 	"log"
 	"net/http"
 )

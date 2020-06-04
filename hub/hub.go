@@ -1,7 +1,7 @@
 package hub
 
 import (
-	"DrawIt/message"
+	"github.com/vashish1/DrawIt/message"
 	"encoding/json"
 	"log"
 	"net/http"

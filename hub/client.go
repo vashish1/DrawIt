@@ -3,7 +3,7 @@ package hub
 import (
 	"github.com/gorilla/websocket"
 	uuid "github.com/google/uuid"
-	"DrawIt/utility"
+	"github.com/vashish1/DrawIt/utility"
 )
 
 //Client stores the data w.r.t a client in a hub.
