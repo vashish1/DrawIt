@@ -37,8 +37,8 @@ func main() {
 	go h2.Run()
 
 	http.HandleFunc("/index", index)
-	// http.HandleFunc("/", h1.HandleWebSocket)
-	// http.HandleFunc("/connect", h2.HandleWebSocket)
+	http.HandleFunc("/", h1.HandleWebSocket)
+	http.HandleFunc("/connect", h2.HandleWebSocket)
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Fatal(err)
@@ -46,7 +46,7 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("./index.html")
+	t, err := template.ParseFiles("./Index.html")
 	if err != nil {
 		log.Fatal("Could not parse template files\n", err)
 	}
