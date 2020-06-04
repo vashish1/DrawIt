@@ -35,8 +35,8 @@ var users = []user.User{
 	go h1.Run()
 	go h2.Run()
 	
-	http.HandleFunc("/yashi",h1.HandleWebSocket)
-	http.HandleFunc("/anni",h2.HandleWebSocket)
+	http.HandleFunc("/",h1.HandleWebSocket)
+	http.HandleFunc("/connect",h2.HandleWebSocket)
 	err := http.ListenAndServe(":3000", nil)
 	if err != nil {
 		log.Fatal(err)
