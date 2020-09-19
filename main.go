@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"os"
 
@@ -15,8 +14,8 @@ import (
 var Port = os.Getenv("PORT")
 
 func main() {
-	
-	var r=mux.NewRouter();
+
+	var r = mux.NewRouter()
 	var users = []user.User{
 		{
 			Name: "Anurag",
@@ -79,7 +78,7 @@ func main() {
 	r.HandleFunc("/kaushik", h6.HandleWebSocket)
 	r.HandleFunc("/raja", h7.HandleWebSocket)
 	r.HandleFunc("/shailendra", h8.HandleWebSocket)
-    
+
 	http.Handle("/", r)
 	http.ListenAndServe(":"+Port, nil)
 }
