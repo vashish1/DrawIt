@@ -1,10 +1,11 @@
 package hub
 
 import (
-	"github.com/vashish1/DrawIt/message"
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/vashish1/DrawIt/message"
 
 	"github.com/gorilla/websocket"
 	"github.com/tidwall/gjson"
@@ -104,7 +105,92 @@ var upgrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool { return true },
 }
 
-func (hub *Hub) HandleWebSocket(w http.ResponseWriter, r *http.Request) {
+func (hub *Hub) Anurag(w http.ResponseWriter, r *http.Request) {
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "could not upgrade", http.StatusInternalServerError)
+		return
+	}
+	client := newClient(hub, socket)
+	hub.clients = append(hub.clients, client)
+	hub.register <- client
+	client.run()
+}
+
+func (hub *Hub) Pragati(w http.ResponseWriter, r *http.Request) {
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "could not upgrade", http.StatusInternalServerError)
+		return
+	}
+	client := newClient(hub, socket)
+	hub.clients = append(hub.clients, client)
+	hub.register <- client
+	client.run()
+}
+func (hub *Hub) Tanvi(w http.ResponseWriter, r *http.Request) {
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "could not upgrade", http.StatusInternalServerError)
+		return
+	}
+	client := newClient(hub, socket)
+	hub.clients = append(hub.clients, client)
+	hub.register <- client
+	client.run()
+}
+func (hub *Hub) Dwivedi(w http.ResponseWriter, r *http.Request) {
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "could not upgrade", http.StatusInternalServerError)
+		return
+	}
+	client := newClient(hub, socket)
+	hub.clients = append(hub.clients, client)
+	hub.register <- client
+	client.run()
+}
+func (hub *Hub) Kaushik(w http.ResponseWriter, r *http.Request) {
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "could not upgrade", http.StatusInternalServerError)
+		return
+	}
+	client := newClient(hub, socket)
+	hub.clients = append(hub.clients, client)
+	hub.register <- client
+	client.run()
+}
+func (hub *Hub) Raja(w http.ResponseWriter, r *http.Request) {
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "could not upgrade", http.StatusInternalServerError)
+		return
+	}
+	client := newClient(hub, socket)
+	hub.clients = append(hub.clients, client)
+	hub.register <- client
+	client.run()
+}
+func (hub *Hub) Shailendra(w http.ResponseWriter, r *http.Request) {
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "could not upgrade", http.StatusInternalServerError)
+		return
+	}
+	client := newClient(hub, socket)
+	hub.clients = append(hub.clients, client)
+	hub.register <- client
+	client.run()
+}
+func (hub *Hub) Priyanka(w http.ResponseWriter, r *http.Request) {
 	socket, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)
