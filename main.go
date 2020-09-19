@@ -5,16 +5,18 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gorilla/mux"
 	"github.com/vashish1/DrawIt/hub"
 	"github.com/vashish1/DrawIt/user"
 )
 
 // type m map[string]*hub.Hub
 
-var p = os.Getenv("PORT")
+var Port = os.Getenv("PORT")
 
 func main() {
-
+	
+	var r=mux.NewRouter();
 	var users = []user.User{
 		{
 			Name: "Anurag",
@@ -68,20 +70,18 @@ func main() {
 	go h1.Run()
 	go h2.Run()
 
-	http.HandleFunc("/index", index)
-	http.HandleFunc("/anurag", h1.HandleWebSocket)
-	http.HandleFunc("/pragati", h2.HandleWebSocket)
-	http.HandleFunc("/tani", h3.HandleWebSocket)
-	http.HandleFunc("/priyanka", h4.HandleWebSocket)
-	http.HandleFunc("/dwivedi", h5.HandleWebSocket)
-	http.HandleFunc("/kaushik", h6.HandleWebSocket)
-	http.HandleFunc("/raja", h7.HandleWebSocket)
-	http.HandleFunc("/shailendra", h8.HandleWebSocket)
-
-	err := http.ListenAndServe(":"+p, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	r.HandleFunc("/index", index)
+	r.HandleFunc("/anurag", h1.HandleWebSocket)
+	r.HandleFunc("/pragati", h2.HandleWebSocket)
+	r.HandleFunc("/tani", h3.HandleWebSocket)
+	r.HandleFunc("/priyanka", h4.HandleWebSocket)
+	r.HandleFunc("/dwivedi", h5.HandleWebSocket)
+	r.HandleFunc("/kaushik", h6.HandleWebSocket)
+	r.HandleFunc("/raja", h7.HandleWebSocket)
+	r.HandleFunc("/shailendra", h8.HandleWebSocket)
+    
+	http.Handle("/", r)
+	http.ListenAndServe(":"+Port, nil)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
