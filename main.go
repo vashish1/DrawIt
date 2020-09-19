@@ -68,6 +68,12 @@ func main() {
 	// h := hub.NewHub()
 	go h1.Run()
 	go h2.Run()
+	go h3.Run()
+	go h4.Run()
+	go h5.Run()
+	go h6.Run()
+	go h7.Run()
+	go h8.Run()
 
 	r.HandleFunc("/index", index)
 	r.HandleFunc("/anurag", h1.HandleWebSocket)
