@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"text/template"
+	"os"
 
 	"github.com/vashish1/DrawIt/hub"
 	"github.com/vashish1/DrawIt/user"
@@ -11,15 +11,41 @@ import (
 
 // type m map[string]*hub.Hub
 
+var p = os.Getenv("PORT")
+
 func main() {
 
 	var users = []user.User{
 		{
-			Name: "yashi",
+			Name: "Anurag",
 			Slot: hub.NewHub(),
 		},
 		{
-			Name: "Anni",
+			Name: "Pragati",
+			Slot: hub.NewHub(),
+		},
+		{
+			Name: "Tanvi",
+			Slot: hub.NewHub(),
+		},
+		{
+			Name: "Priyanka",
+			Slot: hub.NewHub(),
+		},
+		{
+			Name: "Dwivedi",
+			Slot: hub.NewHub(),
+		},
+		{
+			Name: "Kaushik",
+			Slot: hub.NewHub(),
+		},
+		{
+			Name: "Raja",
+			Slot: hub.NewHub(),
+		},
+		{
+			Name: "shailendra",
 			Slot: hub.NewHub(),
 		},
 	}
@@ -32,26 +58,32 @@ func main() {
 	// }
 	h1 := users[0].Slot
 	h2 := users[1].Slot
+	h3 := users[2].Slot
+	h4 := users[3].Slot
+	h5 := users[4].Slot
+	h6 := users[5].Slot
+	h7 := users[6].Slot
+	h8 := users[7].Slot
 	// h := hub.NewHub()
 	go h1.Run()
 	go h2.Run()
 
 	http.HandleFunc("/index", index)
-	http.HandleFunc("/", h1.HandleWebSocket)
-	http.HandleFunc("/connect", h2.HandleWebSocket)
-	err := http.ListenAndServe(":80", nil)
+	http.HandleFunc("/anurag", h1.HandleWebSocket)
+	http.HandleFunc("/pragati", h2.HandleWebSocket)
+	http.HandleFunc("/tani", h3.HandleWebSocket)
+	http.HandleFunc("/priyanka", h4.HandleWebSocket)
+	http.HandleFunc("/dwivedi", h5.HandleWebSocket)
+	http.HandleFunc("/kaushik", h6.HandleWebSocket)
+	http.HandleFunc("/raja", h7.HandleWebSocket)
+	http.HandleFunc("/shailendra", h8.HandleWebSocket)
+
+	err := http.ListenAndServe(":"+p, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("./Index.html")
-	if err != nil {
-		log.Fatal("Could not parse template files\n", err)
-	}
-	er := t.Execute(w, "")
-	if er != nil {
-		log.Fatal("could not execute the files\n", er)
-	}
+	w.Write([]byte(`Working`))
 }
